@@ -1,6 +1,6 @@
 # 🚽
 
-A scoring system for facilities visited at sites. Bring your own postgresQL DB. Written in Flask and DB Flash Alchemy to access PostgreSQL 11 data store
+A scoring system for facilities visited at sites. Bring your own postgresQL DB. Written in Flask and DB Flask Alchemy to access PostgreSQL 11 data store
 
 ## How to use
 The code is publicly there and a dockerfile is provided. Do not publish the docker image to a public repo with your database settings, use an environment variable (unpublished) or do not even publish publicly at all. why anyway ¯\_(ツ)_/¯
