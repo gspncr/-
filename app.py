@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.debug = True
 
 app.config['SQLALCHEMY_DATABASE_URI']='REDACTED'
 db = SQLAlchemy(app)
@@ -13,15 +14,15 @@ class Site(db.Model):
     availabilityScore = db.Column(db.Integer)
     cleanlinessScore = db.Column(db.Integer)
     lightingScore = db.Column(db.Integer)
-    scentScore = db.Column(db.Integer)
+    spaciousScore = db.Column(db.Integer)
 
-    def __init__(self, site, score, availabilityScore, cleanlinessScore, lightingScore, scentScore):
+    def __init__(self, site, score, availabilityScore, cleanlinessScore, lightingScore, spaciousScore):
         self.site = site
         self.score = score
         self.availabilityScore = availabilityScore
         self.cleanlinessScore = cleanlinessScore
         self.lightingScore = lightingScore
-        self.scentScore = scentScore
+        self.spaciousScore = spaciousScore
 
     def __repr__(self):
         return '<Site %r>' % self.site
@@ -35,10 +36,10 @@ def index():
 
 @app.route('/new-site', methods=['POST'])
 def newsite():
-    site = Site(request.form['site'], request.form['score'], request.form['availabilityScore'], request.form['cleanlinessScore'], request.form['lightingScore'], request.form['scentScore'])
+    site = Site(request.form['site'], request.form['score'], request.form['availabilityScore'], request.form['cleanlinessScore'], request.form['lightingScore'], request.form['spaciousScore'])
     db.session.add(site)
     db.session.commit()
     return redirect(url_for('index'))
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+
+app.run(host='0.0.0.0', port=8080)
