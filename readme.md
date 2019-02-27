@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/gspncr/facility-scoring/_apis/build/status/gspncr.facility-scoring?branchName=master)](https://dev.azure.com/gspncr/facility-scoring/_build/latest?definitionId=1&branchName=master)
+
 # 🚽
 
 A scoring system for facilities visited at sites. Bring your own postgresQL DB. Written in Flask and DB Flask Alchemy to access PostgreSQL 11 data store
