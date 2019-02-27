@@ -1,41 +1,67 @@
 <html>
 <head>
-  <title> site 🚽 rankings </title>
+  <title> 🚽 Facility Scoring </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="static/css/normalize.css">
+    <link rel="stylesheet" href="static/css/skeleton.css">
 </head>
 <body>
-  <h1>🚽</h1>
-  <h3> there are entries for {{entries}} sites, wow!</h3>
-  <h3> latest entry is for {{latest.site}} with a score of {{latest.score}}, cheers for that!</h3>
-  <form method="post" action="/new-site">
-    <label> site name: </label>
-    <input id="site" name="site" type="text" />
-  <br>
-    <label> overall satisfaction score: </label>
-    <input id="score" name="score" type="range" min="0" max="10" value="5" oninput="scoreOutput.value = score.value" />
-    <output name="scoreOutput" id="scoreOutput"> 5 </output>
-  <br>
-    <label> availability score: </label>
-    <input id="availabilityScore" name="availabilityScore" type="range" min="0" max="10" value="5" oninput="availabilityScoreOutput.value = availabilityScore.value" />
-    <output name="availabilityScoreOutput" id="availabilityScoreOutput"> 5 </output>
-  <br>
-    <label> cleanliness score: </label>
-    <input id="cleanlinessScore" name="cleanlinessScore" type="range" min="0" max="10" value="5" oninput="cleanlinessScoreOutput.value = cleanlinessScore.value" />
-    <output name="cleanlinessScoreOutput" id="cleanlinessScoreOutput"> 5 </output>
-  <br>
-    <label> lighting score: </label>
-    <input id="lightingScore" name="lightingScore" type="range" min="0" max="10" value="5" oninput="lightingScoreOutput.value = lightingScore.value" />
-    <output name="lightingScoreOutput" id="lightingScoreOutput"> 5 </output>
-  <br>
-  <label> scent score: </label>
-  <input id="scentScore" name="scentScore" type="range" min="0" max="10" value="5" oninput="scentScoreOutput.value = scentScore.value" />
-  <output name="scentScoreOutput" id="scentScoreOutput"> 5 </output>
-<br>
-    <input type="submit" />
-  </form>
+  <div class="container">
+    <div class="row">
+    <div class="one-half column" style="margin-top: 5%">
+    <h1>🚽 Facility Scoring</h1>
+    <h5> A system for scoring site facilities.</h5>
+    <p>There are entries for {{entries}} sites, wow!<br> The latest entry is for {{latest.site}} with a score of {{latest.score}}!</p>
+    </div>
+    <div class="one-half column" style="margin-top: 5%">
+      <input type="text" placeholder="Search for a site.."><input type="submit" value="search" autocomplete="off"/>
+    </div>
+    </div>
+    <div class="row">
+      <div class="one-half column" style="margin-top: 5%">
+        <h3> Submit a site:</h3>
+        <strong> Some quick stats: </strong>
 
-  {% for site in refSite %}
-    <li> {{site.site}} has score of {{site.score}} </li>
-  {% endfor %}
+        <form method="post" action="/new-site">
+          <label> site name: </label>
+          <input id="site" name="site" type="text" autocomplete="off" />
+
+          <label> overall satisfaction score: </label>
+          <input id="score" name="score" type="range" min="0" max="10" value="5" oninput="scoreOutput.value = score.value" />
+          <output name="scoreOutput" id="scoreOutput"> 5 </output>
+
+          <label> availability score: </label>
+          <input id="availabilityScore" name="availabilityScore" type="range" min="0" max="10" value="5" oninput="availabilityScoreOutput.value = availabilityScore.value" />
+          <output name="availabilityScoreOutput" id="availabilityScoreOutput"> 5 </output>
+
+          <label> cleanliness score: </label>
+          <input id="cleanlinessScore" name="cleanlinessScore" type="range" min="0" max="10" value="5" oninput="cleanlinessScoreOutput.value = cleanlinessScore.value" />
+          <output name="cleanlinessScoreOutput" id="cleanlinessScoreOutput"> 5 </output>
+
+          <label> lighting score: </label>
+          <input id="lightingScore" name="lightingScore" type="range" min="0" max="10" value="5" oninput="lightingScoreOutput.value = lightingScore.value" />
+          <output name="lightingScoreOutput" id="lightingScoreOutput"> 5 </output>
+
+        <label> spacious score: </label>
+        <input id="spaciousScore" name="spaciousScore" type="range" min="0" max="10" value="5" oninput="spaciousScoreOutput.value = spaciousScore.value" />
+        <output name="spaciousScoreOutput" id="spaciousScoreOutput"> 5 </output>
+      <br>
+          <input type="submit" />
+        </form>
+    </div>
+
+    <div class="one-half column" style="margin-top: 5%">
+      <h3>  Latest entries are:</h3>
+      <ol>
+      {% for site in refSite %}
+        <li> <a href="/site/{{site.site}}">{{site.site}}</a> has score of {{site.score}} </li>
+      {% endfor %}
+    </ol>
+    </div>
+    </div>
+  </div>
+
 </body>
 
 </html>

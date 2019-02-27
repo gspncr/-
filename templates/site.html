@@ -1,17 +1,32 @@
 <html>
 <head>
   <title> 🚽 at {{oneSite.site}} </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../static/css/normalize.css">
+  <link rel="stylesheet" href="../static/css/skeleton.css">
 </head>
 <body>
-  <h1> {{oneSite.site}} </h1>
-
-  <h2> Score card for {{oneSite.site}} </h2>
-  <p> {{oneSite.site}} has an overall score of {{oneSite.score}}</p>
-  <p> {{oneSite.site}} has an availability score of {{oneSite.availabilityScore}}</p>
-  <p> {{oneSite.site}} has a cleanliness score of {{oneSite.cleanlinessScore}}</p>
-  <p> {{oneSite.site}} has a lighting score of {{oneSite.lightingScore}}</p>
-  <p> {{oneSite.site}} has a spacious score of {{oneSite.spaciousScore}}</p>
-
+    <div class="container">
+  <div class="one-half column" style="margin-top: 5%">
+  <h1>🚽 Facility Scoring</h1>
+  <h5> A system for scoring site facilities.</h5>
+  </div>
+  <div class="one-half column" style="margin-top: 5%">
+    <input type="text" placeholder="Search for a site.."><input type="submit" value="search" autocomplete="off"/>
+  </div>
+    <div class="row">
+    <div class="two-thirds column" style="margin-top: 5%">
+  <h4> Site: {{oneSite.site}} </h4>
+  <h5> Score card for {{oneSite.site}}: </h5>
+  <li> {{oneSite.site}} has an overall score of <strong>{{oneSite.score}}</strong></li>
+  <li> {{oneSite.site}} has an availability score of <strong>{{oneSite.availabilityScore}}</strong></li>
+  <li> {{oneSite.site}} has a cleanliness score of <strong>{{oneSite.cleanlinessScore}}</strong></li>
+  <li> {{oneSite.site}} has a lighting score of <strong>{{oneSite.lightingScore}}</strong></li>
+  <li> {{oneSite.site}} has a spacious score of <strong>{{oneSite.spaciousScore}}</strong></li>
+</div>
+</div>
+</div>
 </body>
 
 </html>

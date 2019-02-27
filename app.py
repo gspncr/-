@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.debug = True
 
-app.config['SQLALCHEMY_DATABASE_URI']='REDACTED'
+app.config['SQLALCHEMY_DATABASE_URI']='redacted'
 db = SQLAlchemy(app)
 
 class Site(db.Model):
