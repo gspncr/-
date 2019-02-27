@@ -34,6 +34,11 @@ def index():
     latest = Site.query.order_by(Site.id.desc()).first()
     return render_template('app.html', refSite=refSite, entries=entries, latest=latest)
 
+@app.route('/site/<sitename>')
+def site(sitename):
+    oneSite = Site.query.filter_by(site=sitename).first()
+    return render_template('site.html', oneSite=oneSite)
+
 @app.route('/new-site', methods=['POST'])
 def newsite():
     site = Site(request.form['site'], request.form['score'], request.form['availabilityScore'], request.form['cleanlinessScore'], request.form['lightingScore'], request.form['spaciousScore'])
