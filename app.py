@@ -1,10 +1,10 @@
+import os
 from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
-
+print(os.environ['FS_DB'])
 app = Flask(__name__)
 app.debug = True
-
-app.config['SQLALCHEMY_DATABASE_URI']='redacted'
+app.config['SQLALCHEMY_DATABASE_URI']=os.environ['FS_DB']
 db = SQLAlchemy(app)
 
 class Site(db.Model):
