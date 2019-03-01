@@ -61,7 +61,7 @@ def removeSite(sitename):
     try:
         site = Site.query.filter_by(site=sitename).delete()
         db.session.commit()
-        return redirect(url_for('index'))
+        return jsonify("removed")
     except exc.IntegrityError as e:
         e = "Site already exists!"
         return render_template('error.html', error=e)
