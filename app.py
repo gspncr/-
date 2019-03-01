@@ -43,7 +43,7 @@ def site(sitename):
 @app.route('/new-site', methods=['POST'])
 def newsite():
     try:
-        site = Site(request.form['site'], request.form['score'], request.form['availabilityScore'], request.form['cleanlinessScore'], request.form['lightingScore'], request.form['spaciousScore'])
+        site = Site(request.form['site'].replace(' ','-'), request.form['score'], request.form['availabilityScore'], request.form['cleanlinessScore'], request.form['lightingScore'], request.form['spaciousScore'])
         db.session.add(site)
         db.session.commit()
         return redirect(url_for('index'))
