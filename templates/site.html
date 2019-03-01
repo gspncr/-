@@ -10,6 +10,7 @@
     <div class="container">
   <div class="one-half column" style="margin-top: 5%">
   <h1>🚽 Facility Scoring</h1>
+  <p> <a href="{{url_for('index')}}">Home</a> | <a href="{{url_for('bestOverall')}}">Best Overall</a> | <a href="{{url_for('mostAvailable')}}">Most Available</a> | <a href="{{url_for('mostClean')}}">Cleanest</a> | <a href="{{url_for('bestLighting')}}">Best Lighting</a> | <a href="{{url_for('mostSpace')}}">Most Spacious</a> </p>
   <h4> Site: {{oneSite.site}} </h4>
   <h5> Score card for {{oneSite.site}}: </h5>
   <li> {{oneSite.site}} has an overall score of <strong>{{oneSite.score}}</strong></li>

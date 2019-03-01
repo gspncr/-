@@ -11,8 +11,9 @@
     <div class="row">
     <div class="one-half column" style="margin-top: 5%">
     <h1>🚽 Facility Scoring</h1>
+    <p> <a href="{{url_for('index')}}">Home</a> | <a href="{{url_for('bestOverall')}}">Best Overall</a> | <a href="{{url_for('mostAvailable')}}">Most Available</a> | <a href="{{url_for('mostClean')}}">Cleanest</a> | <a href="{{url_for('bestLighting')}}">Best Lighting</a> | <a href="{{url_for('mostSpace')}}">Most Spacious</a> </p>
     <h5> A system for scoring site facilities.</h5>
-    <p>There are entries for {{entries}} sites, wow!<br> The latest entry is for {{latest.site}} with a score of {{latest.score}}!</p>
+    {% if entries %} <p>There are entries for {{entries}} sites, wow!<br> The latest entry is for {{latest.site}} with a score of {{latest.score}}!</p>{% endif %}
     </div>
   <!--    <div class="one-half column" style="margin-top: 5%">
     <input type="text" placeholder="Search for a site.."><input type="submit" value="search" autocomplete="off"/>
@@ -20,6 +21,7 @@
     </div>
     <div class="row">
       <div class="one-half column" style="margin-top: 0%">
+      {% if entries %}
         <h3> Submit a site:</h3>
 
         <form method="post" action="/new-site">
@@ -48,14 +50,46 @@
       <br>
           <input type="submit" />
         </form>
+        {% endif %}
     </div>
 
     <div class="one-half column" style="margin-top: 0%">
-      <h3>  Latest entries are:</h3>
+      {% if entries %}<h3>  Latest entries are:</h3>{% endif %}
+      {% if cleanest %}<h3> Cleanest locations are:</h3>{% endif %}
+      {% if available %}<h3> Most available locations are:</h3>{% endif %}
+      {% if lighting %}<h3> Best lighting locations are:</h3>{% endif %}
+      {% if space %}<h3> Most spacious locations are:</h3>{% endif %}
       <ol>
-      {% for site in refSite %}
-        <li> <a href="/site/{{site.site}}">{{site.site}}</a> has score of {{site.score}} </li>
-      {% endfor %}
+        {% if entries %}
+          {% for site in refSite|sort(attribute='cleanlinessScore', reverse = True) %}
+            <li> <a href="/site/{{site.site}}">{{site.site}}</a> has score of {{site.cleanlinessScore}} </li>
+          {% endfor %}
+        {% endif %}
+        {% if overall %}
+          {% for site in refSite|sort(attribute='score', reverse = True) %}
+            <li> <a href="/site/{{site.site}}">{{site.site}}</a> has score of {{site.score}} </li>
+          {% endfor %}
+        {% endif %}
+        {% if cleanest %}
+          {% for site in refSite|sort(attribute='cleanlinessScore', reverse = True) %}
+            <li> <a href="/site/{{site.site}}">{{site.site}}</a> has score of {{site.cleanlinessScore}} </li>
+          {% endfor %}
+        {% endif %}
+        {% if available %}
+          {% for site in refSite|sort(attribute='availabilityScore', reverse = True) %}
+            <li> <a href="/site/{{site.site}}">{{site.site}}</a> has score of {{site.availabilityScore}} </li>
+          {% endfor %}
+        {% endif %}
+        {% if lighting %}
+          {% for site in refSite|sort(attribute='lightingScore', reverse = True) %}
+            <li> <a href="/site/{{site.site}}">{{site.site}}</a> has score of {{site.lightingScore}} </li>
+          {% endfor %}
+        {% endif %}
+        {% if space %}
+          {% for site in refSite|sort(attribute='spaciousScore', reverse = True) %}
+            <li> <a href="/site/{{site.site}}">{{site.site}}</a> has score of {{site.spaciousScore}} </li>
+          {% endfor %}
+        {% endif %}
     </ol>
     </div>
     </div>

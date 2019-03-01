@@ -66,6 +66,31 @@ def removeSite(sitename):
         e = "Site already exists!"
         return render_template('error.html', error=e)
 
+@app.route('/top', methods=['GET'])
+def bestOverall():
+    latest = Site.query.order_by(Site.score.desc())
+    return render_template('app.html', overall=latest, refSite=latest)
+
+@app.route('/most-clean', methods=['GET'])
+def mostClean():
+    latest = Site.query.order_by(Site.cleanlinessScore.desc())
+    return render_template('app.html', cleanest=latest, refSite=latest)
+
+@app.route('/most-available', methods=['GET'])
+def mostAvailable():
+    latest = Site.query.order_by(Site.availabilityScore.desc())
+    return render_template('app.html', available=latest, refSite=latest)
+
+@app.route('/best-lighting', methods=['GET'])
+def bestLighting():
+    latest = Site.query.order_by(Site.lightingScore.desc())
+    return render_template('app.html', lighting=latest, refSite=latest)
+
+@app.route('/most-space', methods=['GET'])
+def mostSpace():
+    latest = Site.query.order_by(Site.spaciousScore.desc())
+    return render_template('app.html', space=latest, refSite=latest)
+
 @app.route('/site/<sitename>', methods=['GET'])
 def site(sitename):
     oneSite = Site.query.filter_by(site=sitename).first()
