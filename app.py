@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import exc
 print(os.environ['FS_DB'])
 app = Flask(__name__)
 app.debug = True
@@ -41,10 +42,14 @@ def site(sitename):
 
 @app.route('/new-site', methods=['POST'])
 def newsite():
-    site = Site(request.form['site'], request.form['score'], request.form['availabilityScore'], request.form['cleanlinessScore'], request.form['lightingScore'], request.form['spaciousScore'])
-    db.session.add(site)
-    db.session.commit()
-    return redirect(url_for('index'))
+    try:
+        site = Site(request.form['site'], request.form['score'], request.form['availabilityScore'], request.form['cleanlinessScore'], request.form['lightingScore'], request.form['spaciousScore'])
+        db.session.add(site)
+        db.session.commit()
+        return redirect(url_for('index'))
+    except exc.IntegrityError as e:
+        e = "Site already exists!"
+        return render_template('error.html', error=e)
 
 
 app.run(host='0.0.0.0', port=8080)
