@@ -10,13 +10,6 @@
     <div class="container">
   <div class="one-half column" style="margin-top: 5%">
   <h1>🚽 Facility Scoring</h1>
-  <h5> A system for scoring site facilities.</h5>
-  </div>
-  <div class="one-half column" style="margin-top: 5%">
-    <input type="text" placeholder="Search for a site.."><input type="submit" value="search" autocomplete="off"/>
-  </div>
-    <div class="row">
-    <div class="two-thirds column" style="margin-top: 5%">
   <h4> Site: {{oneSite.site}} </h4>
   <h5> Score card for {{oneSite.site}}: </h5>
   <li> {{oneSite.site}} has an overall score of <strong>{{oneSite.score}}</strong></li>
@@ -24,8 +17,39 @@
   <li> {{oneSite.site}} has a cleanliness score of <strong>{{oneSite.cleanlinessScore}}</strong></li>
   <li> {{oneSite.site}} has a lighting score of <strong>{{oneSite.lightingScore}}</strong></li>
   <li> {{oneSite.site}} has a spacious score of <strong>{{oneSite.spaciousScore}}</strong></li>
-</div>
-</div>
+  </div>
+  <div class="one-half column" style="margin-top: 5%">
+  <!--  <input type="text" placeholder="Search for a site.."><input type="submit" value="search" autocomplete="off"/> -->
+    <br><br>
+    <h5> Update {{oneSite.site}} </h5>
+
+    <form method="post" action="/update/{{oneSite.site}}">
+      <label> site name: </label>
+      <input id="site" name="site" type="text" value="{{oneSite.site}}" autocomplete="off"  readonly/>
+
+      <label> overall satisfaction score: </label>
+      <input id="score" name="score" type="range" min="0" max="10" value="{{oneSite.score}}" oninput="scoreOutput.value = score.value" />
+      <output name="scoreOutput" id="scoreOutput"> {{oneSite.score}} </output>
+
+      <label> availability score: </label>
+      <input id="availabilityScore" name="availabilityScore" type="range" min="0" max="10" value="{{oneSite.availabilityScore}}" oninput="availabilityScoreOutput.value = availabilityScore.value" />
+      <output name="availabilityScoreOutput" id="availabilityScoreOutput"> {{oneSite.availabilityScore}} </output>
+
+      <label> cleanliness score: </label>
+      <input id="cleanlinessScore" name="cleanlinessScore" type="range" min="0" max="10" value="{{oneSite.cleanlinessScore}}" oninput="cleanlinessScoreOutput.value = cleanlinessScore.value" />
+      <output name="cleanlinessScoreOutput" id="cleanlinessScoreOutput"> {{oneSite.cleanlinessScore}} </output>
+
+      <label> lighting score: </label>
+      <input id="lightingScore" name="lightingScore" type="range" min="0" max="10" value="{{oneSite.lightingScore}}" oninput="lightingScoreOutput.value = lightingScore.value" />
+      <output name="lightingScoreOutput" id="lightingScoreOutput"> {{oneSite.lightingScore}} </output>
+
+    <label> spacious score: </label>
+    <input id="spaciousScore" name="spaciousScore" type="range" min="0" max="10" value="{{oneSite.spaciousScore}}" oninput="spaciousScoreOutput.value = spaciousScore.value" />
+    <output name="spaciousScoreOutput" id="spaciousScoreOutput"> {{oneSite.spaciousScore}} </output>
+  <br>
+      <input type="submit" />
+    </form>
+  </div>
 </div>
 </body>
 

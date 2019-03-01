@@ -14,14 +14,13 @@
     <h5> A system for scoring site facilities.</h5>
     <p>There are entries for {{entries}} sites, wow!<br> The latest entry is for {{latest.site}} with a score of {{latest.score}}!</p>
     </div>
-    <div class="one-half column" style="margin-top: 5%">
-      <input type="text" placeholder="Search for a site.."><input type="submit" value="search" autocomplete="off"/>
-    </div>
+  <!--    <div class="one-half column" style="margin-top: 5%">
+    <input type="text" placeholder="Search for a site.."><input type="submit" value="search" autocomplete="off"/>
+    </div>-->
     </div>
     <div class="row">
-      <div class="one-half column" style="margin-top: 5%">
+      <div class="one-half column" style="margin-top: 0%">
         <h3> Submit a site:</h3>
-        <strong> Some quick stats: </strong>
 
         <form method="post" action="/new-site">
           <label> site name: </label>
@@ -51,7 +50,7 @@
         </form>
     </div>
 
-    <div class="one-half column" style="margin-top: 5%">
+    <div class="one-half column" style="margin-top: 0%">
       <h3>  Latest entries are:</h3>
       <ol>
       {% for site in refSite %}
