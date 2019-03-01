@@ -23,6 +23,3 @@ After that, in your environment, apply the configuration by executing (once 🙃
 ## What libraries?
 Flask and Flask SQL Alchemy
 You might also need `build-deps, gcc, python-dev, musl-dev, postgresql-dev` in your environment (see the Dockerfile explicitly calls else will fail) which most dev machines will already have otherwise install these libraries in your machines Python env.
-
-## Where is the styling and other features?
-On the way 🚂
