@@ -1,5 +1,7 @@
 [![Build Status](https://dev.azure.com/gspncr/facility-scoring/_apis/build/status/gspncr.facility-scoring?branchName=master)](https://dev.azure.com/gspncr/facility-scoring/_build/latest?definitionId=1&branchName=master)
 
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/gspncr/gspncr%2Ffacility-scoring%2Ffacility-scoring?branch=master&key=eyJhbGciOiJIUzI1NiJ9.NWM3YmQ5NzgzMDU2OTc1MTdiNzE2OTE2.iDFBIDm5TkPau_1RhFNBVAHdEFNoBrokFJc28CMxZsw&type=cf-1)]( https://g.codefresh.io/pipelines/facility-scoring/builds?repoOwner=gspncr&repoName=facility-scoring&serviceName=gspncr%2Ffacility-scoring&filter=trigger:build~Build;branch:master;pipeline:5c7bdc49510767514829da0b~facility-scoring)
+
 # 🚽
 
 A scoring system for facilities visited at sites. Bring your own postgresQL DB. Written in Flask and DB Flask Alchemy to access PostgreSQL 11 data store
