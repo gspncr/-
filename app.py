@@ -56,6 +56,16 @@ def apiNewsite():
     except exc.IntegrityError as e:
         return jsonify("site exists")
 
+@app.route('/api/update/<sitename>', methods=['PUT'])
+def apiUpdateSite(sitename):
+    try:
+        db.session.query(Site).filter_by(site=sitename).update({'score': request.json.get('score'), 'availabilityScore': request.json.get('availabilityScore'), 'cleanlinessScore': request.json.get('cleanlinessScore'), 'lightingScore': request.json.get('lightingScore'), 'spaciousScore': request.json.get('spaciousScore')})
+        db.session.commit()
+        return jsonify("site updated")
+    except exc.IntegrityError as e:
+        e = "unhandled"
+        return jsonify("site does not exist or other error")
+
 @app.route('/update/<sitename>', methods=['POST'])
 def updateSite(sitename):
     try:
