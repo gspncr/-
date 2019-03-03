@@ -46,6 +46,16 @@ def newsite():
         e = "Site already exists!"
         return render_template('error.html', error=e)
 
+@app.route('/api/new', methods=['GET','POST'])
+def apiNewsite():
+    try:
+        site = Site(request.json.get('site').replace(' ','-'), request.json.get('score'), request.json.get('availabilityScore'), request.json.get('cleanlinessScore'), request.json.get('lightingScore'), request.json.get('spaciousScore'))
+        db.session.add(site)
+        db.session.commit()
+        return jsonify("success")
+    except exc.IntegrityError as e:
+        return jsonify("site exists")
+
 @app.route('/update/<sitename>', methods=['POST'])
 def updateSite(sitename):
     try:
@@ -64,7 +74,7 @@ def removeSite(sitename):
         return jsonify("removed")
     except exc.IntegrityError as e:
         e = "Site already exists!"
-        return render_template('error.html', error=e)
+        return jsonify("error")
 
 @app.route('/top', methods=['GET'])
 def bestOverall():
