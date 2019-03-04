@@ -36,7 +36,7 @@ def index():
     latest = Site.query.order_by(Site.id.desc()).first()
     return render_template('app.html', refSite=refSite, entries=entries, latest=latest)
 
-@app.route('/latest-10')
+@app.route('/api/latest-10')
 def latestTen():
     refSite = Site.query.limit(10).all()
     return jsonify("latest-10",
@@ -53,7 +53,7 @@ def latestTen():
         ]
     )
 
-@app.route('/cleanest-10')
+@app.route('/api/cleanest-10')
 def cleanestTen():
     #results = db.session.query(User).filter(User.name == "Bob").order_by(User.age.desc()).limit(10)
     refSite = Site.query.order_by(Site.cleanlinessScore.desc()).limit(10).all()
@@ -71,7 +71,7 @@ def cleanestTen():
         ]
     )
 
-@app.route('/top-overall-10')
+@app.route('/api/top-overall-10')
 def topOverallTen():
     #results = db.session.query(User).filter(User.name == "Bob").order_by(User.age.desc()).limit(10)
     refSite = Site.query.order_by(Site.score.desc()).limit(10).all()
@@ -89,7 +89,7 @@ def topOverallTen():
         ]
     )
 
-@app.route('/most-available-10')
+@app.route('/api/most-available-10')
 def mostAvailableTen():
     #results = db.session.query(User).filter(User.name == "Bob").order_by(User.age.desc()).limit(10)
     refSite = Site.query.order_by(Site.availabilityScore.desc()).limit(10).all()
@@ -107,7 +107,7 @@ def mostAvailableTen():
         ]
     )
 
-@app.route('/top-lighting-10')
+@app.route('/api/top-lighting-10')
 def topLightingTen():
     #results = db.session.query(User).filter(User.name == "Bob").order_by(User.age.desc()).limit(10)
     refSite = Site.query.order_by(Site.lightingScore.desc()).limit(10).all()
@@ -125,7 +125,7 @@ def topLightingTen():
         ]
     )
 
-@app.route('/most-spacious-10')
+@app.route('/api/most-spacious-10')
 def mostSpaciousTen():
     #results = db.session.query(User).filter(User.name == "Bob").order_by(User.age.desc()).limit(10)
     refSite = Site.query.order_by(Site.spaciousScore.desc()).limit(10).all()
