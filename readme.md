@@ -18,9 +18,14 @@ The docker image will run with port 8080 exposed so either modify that in your o
 https://toilet.gspncr.com
 
 ## What do I do for the DB?
-Bring your connection string and replace with the redacted. The script needs a fully qualified connection string with conditions included, e.g. `postgres://db-user:db-password@db-hostname:5432/DBNAME?sslmode=require`
+Include an environment variable in the format `FS_DB=postgres://db-user:db-password@db-hostname:5432/DBNAME?sslmode=require`
 
 After that, in your environment, apply the configuration by executing (once 🙃) `dbsetup.py`
+
+## What do I do for Twilio?
+Include an environment variable for the auth and the SID
+`twilio_account_SID=string`
+`twilio_auth_token=string`
 
 ## What libraries?
 Flask and Flask SQL Alchemy
