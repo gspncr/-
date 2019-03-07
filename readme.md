@@ -23,6 +23,7 @@ Include an environment variable in the format `FS_DB=postgres://db-user:db-passw
 After that, in your environment, apply the configuration by executing (once 🙃) `dbsetup.py`
 
 ## What do I do for Twilio?
+First up, Twilio module is absolutely optional. There is more on it in the Wiki
 Include an environment variable for the auth and the SID
 `twilio_account_SID=string`
 `twilio_auth_token=string`
