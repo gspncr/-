@@ -2,12 +2,24 @@ import os
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
+from twilio.rest import Client
+from twilio.twiml.messaging_response import MessagingResponse
 print(os.environ['FS_DB'])
+print(os.environ['twilio_account_SID'])
+print(os.environ['twilio_auth_token'])
 app = Flask(__name__)
 app.debug = True
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ['FS_DB']
 app.config['JSON_SORT_KEYS'] = False
 db = SQLAlchemy(app)
+
+try:
+    account_sid = os.environ['twilio_account_SID']
+    auth_token = os.environ['twilio_auth_token']
+except:
+    print("Twilio keys not found. SMS function will not work. (optional anyway)")
+
+client = Client(account_sid, auth_token)
 
 class Site(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -35,6 +47,23 @@ def index():
     entries = Site.query.count()
     latest = Site.query.order_by(Site.id.desc()).first()
     return render_template('app.html', refSite=refSite, entries=entries, latest=latest)
+
+@app.route('/sms', methods=['GET', 'POST'])
+def sms():
+    try:
+        body = request.values.get('Body', None)
+        print(body)
+        site = Site(body.replace(' ','')[:-1], body.strip()[-1], 5, 5, 5, 5)
+        print(site)
+        db.session.add(site)
+        db.session.commit()
+        resp = MessagingResponse()
+        resp.message("Thanks. Record added! View it at: https://toilet.gspncr.com/site/"+body.replace(' ','')[:-1])
+        return str(resp)
+    except exc.IntegrityError as e:
+        resp = MessagingResponse()
+        resp.message("Sorry. That site already exists.")
+        return str(resp)
 
 @app.route('/api/latest-10')
 def latestTen():
