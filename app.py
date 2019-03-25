@@ -283,4 +283,11 @@ def space(sitename):
     oneSite = Site.query.filter_by(site=sitename).first()
     return jsonify(space=oneSite.spaciousScore)
 
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  return response
+
 app.run(host='0.0.0.0', port=8080)
