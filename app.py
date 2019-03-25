@@ -208,7 +208,7 @@ def updateSite(sitename):
     try:
         db.session.query(Site).filter_by(site=sitename).update({'score': request.form['score'], 'availabilityScore': request.form['availabilityScore'], 'cleanlinessScore': request.form['cleanlinessScore'], 'lightingScore': request.form['lightingScore'], 'spaciousScore': request.form['spaciousScore']})
         db.session.commit()
-        return redirect('site/'+sitename)
+        return redirect(request.url_root+'site/'+sitename)
     except exc.IntegrityError as e:
         e = "unhandled"
         return render_template('error.html', error=e)
