@@ -62,7 +62,7 @@
       <ol>
         {% if entries %}
           {% for site in refSite|sort(attribute='id', reverse = True) %}
-            <li> <a href="/site/{{site.site}}">{{site.site}}</a> has score of {{site.cleanlinessScore}} </li>
+            <li> <a href="/site/{{site.site}}">{{site.site}}</a> has score of {{site.score}} </li>
           {% endfor %}
         {% endif %}
         {% if overall %}
