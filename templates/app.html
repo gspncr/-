@@ -23,7 +23,6 @@
       <div class="one-half column" style="margin-top: 0%">
       {% if entries %}
         <h3> Submit a site:</h3>
-
         <form method="post" action="/new-site">
           <label> site name: </label>
           <input id="site" name="site" type="text" autocomplete="off" />
@@ -48,20 +47,21 @@
         <input id="spaciousScore" name="spaciousScore" type="range" min="0" max="10" value="5" oninput="spaciousScoreOutput.value = spaciousScore.value" />
         <output name="spaciousScoreOutput" id="spaciousScoreOutput"> 5 </output>
       <br>
-          <input type="submit" />
+          <input type="submit"/>
         </form>
         {% endif %}
     </div>
 
     <div class="one-half column" style="margin-top: 0%">
       {% if entries %}<h3>  Latest entries are:</h3>{% endif %}
+      {% if overall %}<h3> Best overall locations are:</h3>{% endif %}
       {% if cleanest %}<h3> Cleanest locations are:</h3>{% endif %}
       {% if available %}<h3> Most available locations are:</h3>{% endif %}
       {% if lighting %}<h3> Best lighting locations are:</h3>{% endif %}
       {% if space %}<h3> Most spacious locations are:</h3>{% endif %}
       <ol>
         {% if entries %}
-          {% for site in refSite|sort(attribute='cleanlinessScore', reverse = True) %}
+          {% for site in refSite|sort(attribute='id', reverse = True) %}
             <li> <a href="/site/{{site.site}}">{{site.site}}</a> has score of {{site.cleanlinessScore}} </li>
           {% endfor %}
         {% endif %}
